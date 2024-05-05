@@ -155,8 +155,8 @@ while True:
                 file_reader(size=11_500)
             case 100_000:
                 file_reader(size=100_000)
-            case 850_000:
-                file_reader(size=850_000)
+            case 800_000:
+                file_reader(size=800_000)
             case 1_000_000:
                 file_reader(size=1_000_000)
             case _:
