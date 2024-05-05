@@ -1,4 +1,5 @@
 import time
+from pathlib import Path
 
 my_list = []
 THRESHOLD = 100
@@ -29,13 +30,17 @@ def file_reader(size):
     rand_sort = int(input("\nDo you want sorted or random array\n"+
                           "1 - Sorted Array\n"+
                           "2 - Random Array\n"))
+    data_folder = Path("cse311_empirical_study/inputs")
     if rand_sort == 1:
-        with open("sorted_numbers{}.txt".format(size), "r") as file:
+        file_to_open = data_folder / "sorted_numbers{}.txt".format(size)
+        print(file_to_open)
+        with open(file_to_open, "r") as file:
             numbers = file.read().split()
 
         my_list = [int(num) for num in numbers]
     elif rand_sort == 2:
-        with open("random_numbers{}.txt".format(size), "r") as file:
+        file_to_open = data_folder / "random_numbers{}.txt".format(size)
+        with open(file_to_open, "r") as file:
             numbers = file.read().split()
 
         my_list = [int(num) for num in numbers]
