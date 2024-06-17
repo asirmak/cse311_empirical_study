@@ -102,6 +102,7 @@ def mergeSort(A):
         merge(A,B,C)
 
 
+"""
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -110,7 +111,50 @@ def quick_sort(arr):
         less_than_pivot = [x for x in arr[1:] if x <= pivot]
         greater_than_pivot = [x for x in arr[1:] if x > pivot]
         return quick_sort(less_than_pivot) + [pivot] + quick_sort(greater_than_pivot)
+"""
 
+def partition(array, low, high):
+ 
+    # choose the rightmost element as pivot
+    pivot = array[high]
+ 
+    # pointer for greater element
+    i = low - 1
+ 
+    # traverse through all elements
+    # compare each element with pivot
+    for j in range(low, high):
+        if array[j] <= pivot:
+ 
+            # If element smaller than pivot is found
+            # swap it with the greater element pointed by i
+            i = i + 1
+ 
+            # Swapping element at i with element at j
+            (array[i], array[j]) = (array[j], array[i])
+ 
+    # Swap the pivot element with the greater element specified by i
+    (array[i + 1], array[high]) = (array[high], array[i + 1])
+ 
+    # Return the position from where partition is done
+    return i + 1
+ 
+# function to perform quicksort
+ 
+ 
+def quickSort(array, low, high):
+    if low < high:
+ 
+        # Find pivot element such that
+        # element smaller than pivot are on the left
+        # element greater than pivot are on the right
+        pi = partition(array, low, high)
+ 
+        # Recursive call on the left of pivot
+        quickSort(array, low, pi - 1)
+ 
+        # Recursive call on the right of pivot
+        quickSort(array, pi + 1, high)
 
 def bubbleSortImproved(test_list):
     n = len(test_list)
@@ -124,7 +168,7 @@ def bubbleSortImproved(test_list):
             break
     return test_list
 
-
+"""
 def quick_sort_improved(test_list):
     if len(test_list) <= THRESHOLD:
         return selectionSort(test_list)
@@ -136,7 +180,7 @@ def quick_sort_improved(test_list):
             less_than_pivot = [x for x in test_list[1:] if x <= pivot]
             greater_than_pivot = [x for x in test_list[1:] if x > pivot]
             return quick_sort(less_than_pivot) + [pivot] + quick_sort(greater_than_pivot)
-
+"""
 while True:
     try:
         size = size_selection()
@@ -193,10 +237,10 @@ while True:
                 print("Time taken for Merge Sort with", len(my_list), "input size is:", timeTaken, "Seconds")
             case 4:
                 start = time.time()
-                sortedList = quick_sort(my_list)
+                quickSort(my_list, 0, len(my_list)-1)
                 end = time.time()
                 timeTaken = end-start
-                print("Sorted List:", sortedList)
+                print("Sorted List:", my_list)
                 print("Time taken for Quick Sort with", len(my_list), "input size is:", timeTaken, "Seconds")
             case 5:
                 start = time.time()
@@ -207,7 +251,7 @@ while True:
                 print("Time taken for Improved Bubble Sort with Sorted List", len(my_list), "input size is:", timeTaken, "Seconds")
             case 6:
                 start = time.time()
-                quick_sort_improved(my_list)
+                #quick_sort_improved(my_list)
                 end = time.time()
                 timeTaken = end-start
                 print("Sorted List:", my_list)
